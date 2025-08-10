@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class ConditionBar : MonoBehaviour
+public class PlayerCondition : MonoBehaviour
 {
-    [SerializeField] Image uiBar;
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +13,6 @@ public class ConditionBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 }
