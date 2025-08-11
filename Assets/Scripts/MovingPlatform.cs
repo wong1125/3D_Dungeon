@@ -9,6 +9,9 @@ public class MovingPlatform : MonoBehaviour
     
     private Rigidbody rb;
     private WaitForSeconds waitDurationSeconds;
+    private Vector3 previusPos;
+    private Vector3 currentPos;
+    private Vector3 velocity;
 
     private void Awake()
     {
@@ -19,6 +22,14 @@ public class MovingPlatform : MonoBehaviour
     void Start()
     {
         StartCoroutine(moveFowardBack());
+    }
+
+    private void FixedUpdate()
+    {
+        //속도 구하기(rb.Velocity를 kinematic에 사용할 수 없기 때문)
+        currentPos = rb.position;
+        velocity = (currentPos - previusPos) / Time.fixedDeltaTime;
+        previusPos = currentPos;
     }
 
 
@@ -47,5 +58,10 @@ public class MovingPlatform : MonoBehaviour
             yield return null;
         }
         rb.MovePosition(targetPos);
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        collision.rigidbody.MovePosition(collision.rigidbody.position + velocity * Time.fixedDeltaTime);
     }
 }
