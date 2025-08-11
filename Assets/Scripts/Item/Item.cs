@@ -11,6 +11,15 @@ public interface IInvestigatable
 
 public class Item : MonoBehaviour, IInvestigatable
 {
+    private Collider col;
+    private MeshRenderer mr;
+    
+    private void Awake()
+    {
+        col = GetComponent<Collider>();
+        mr = GetComponent<MeshRenderer>();
+    }
+
 
     [SerializeField] ItemData data;
 
@@ -26,11 +35,20 @@ public class Item : MonoBehaviour, IInvestigatable
         {
             if (data.effect != null)
             {
-                data.effect.DoItemEffect();
-                Destroy(this.gameObject);
+                StartCoroutine(itemTimer());
             }
             else
                 Debug.Log("아이템 효과가 없습니다!");
         }
+    }
+
+    IEnumerator itemTimer()
+    {
+        data.effect.DoItemEffect(true);
+        col.enabled = false;
+        mr.enabled = false;
+        yield return new WaitForSeconds(data.duration);
+        data.effect.DoItemEffect(false);
+        Destroy(this.gameObject);
     }
 }

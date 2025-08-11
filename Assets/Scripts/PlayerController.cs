@@ -12,11 +12,12 @@ public class PlayerController : MonoBehaviour
     private Vector2 inputMovement;
 
     [Header("Camera Parameter")]
-    [SerializeField] Transform firstPersonCamera;
+    [SerializeField] Transform mainCamera;
     [SerializeField] private float mouseSensitivity;
     [SerializeField] private float mouseAltitudeLimit;
     private Vector2 inputDelta;
     private float currentCameraRotationX;
+    private bool isFirstPerson;
 
     private Rigidbody rb;
 
@@ -48,9 +49,9 @@ public class PlayerController : MonoBehaviour
     //인풋을 실제 움직임으로 변환
     void Move()
     {
-        //구 전용 앞 방향 설정: 이게 없으면 공이 굴러가면서 앞도 같이 변한다.
-        Vector3 foward = firstPersonCamera.forward;
-        Vector3 right = firstPersonCamera.right;
+        //구 전용 앞 방향 설정: 이게 없으면 공이 굴러가면서 Vector.Foward 기준도 같이 변한다.
+        Vector3 foward = mainCamera.forward;
+        Vector3 right = mainCamera.right;
         foward.y = 0f;
         right.y = 0f;
         foward.Normalize();
@@ -65,10 +66,9 @@ public class PlayerController : MonoBehaviour
 
     void CameraLook()
     {
-
         currentCameraRotationX += inputDelta.y * mouseSensitivity;
         currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -mouseAltitudeLimit, mouseAltitudeLimit);
-        firstPersonCamera.localEulerAngles = new Vector3(-currentCameraRotationX, 0, 0);
+        mainCamera.localEulerAngles = new Vector3(-currentCameraRotationX, 0, 0);
         transform.eulerAngles += new Vector3(0, inputDelta.x * mouseSensitivity, 0);
     }
 
@@ -97,6 +97,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void PerspectiveInputRecieve(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started && IsGround())
+        {
+            ChangePerspective();
+        }
+    }
+
     bool IsGround()
     {
         Ray ray = new Ray(transform.position, Vector3.down);
@@ -109,5 +117,18 @@ public class PlayerController : MonoBehaviour
     public void ChangeSpeed(float speed)
     {
         moveSpeed += speed;
+    }
+
+    void ChangePerspective()
+    {
+        if (isFirstPerson)
+        {
+            mainCamera.position = new Vector3(0, -1.5f, -5);
+        }
+        else
+        {
+            mainCamera.position = Vector3.zero;
+        }
+        isFirstPerson = !isFirstPerson;
     }
 }
