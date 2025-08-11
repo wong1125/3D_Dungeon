@@ -7,9 +7,11 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement Parameter")]
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float runSpeed;
     [SerializeField] private float jumpPower;
     [SerializeField] private LayerMask groundLayerMask;
     private Vector2 inputMovement;
+    private float actualRunValue = 1;
 
     [Header("Camera Parameter")]
     [SerializeField] Transform mainCamera;
@@ -61,7 +63,7 @@ public class PlayerController : MonoBehaviour
         right.Normalize();
 
         Vector3 actaulMovementVector = foward * inputMovement.y + right * inputMovement.x;
-        actaulMovementVector *= moveSpeed;
+        actaulMovementVector *= moveSpeed + actualRunValue;
 
         actaulMovementVector.y = rb.velocity.y;
         rb.velocity = actaulMovementVector;
@@ -112,6 +114,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void RunInputRecieve(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed && IsGround())
+        {
+            actualRunValue = runSpeed;
+        }
+        else
+        {
+            actualRunValue = 1;
+        }
+    }
+
     bool IsGround()
     {
         Ray ray = new Ray(transform.position, Vector3.down);
@@ -149,7 +163,7 @@ public class PlayerController : MonoBehaviour
     //gpt가 만들었습니다.
     void PolarAngleCaulator(float currentCameraRotationX)
     {
-        // 피벗(플레이어 머리 근처). 필요하면 상단을 SerializeField로 빼서 조절해도 됨.
+        // 피벗(플레이어 머리 근처).
         const float headHeight = 1.6f;
         Vector3 pivot = transform.position + Vector3.up * headHeight;
 

@@ -390,6 +390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac25fc02765eee146b2294cdba0870b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveDistance: 5
+  duration: 5
 --- !u!1 &429299181
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,6 +668,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f4e62066-93a9-4358-b4af-2286aba0dc46
     m_ActionName: Player/PerspectiveChange[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 717473713}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: RunInputRecieve
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3a714c68-57f6-407f-bfc8-d94fe25f94d8
+    m_ActionName: Player/Run[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -684,6 +702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  runSpeed: 2.5
   jumpPower: 5
   groundLayerMask:
     serializedVersion: 2
