@@ -10,8 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float runSpeed;
     [SerializeField] private float jumpPower;
     [SerializeField] private LayerMask groundLayerMask;
+    [SerializeField] private LayerMask ladderLayerMask;
     private Vector2 inputMovement;
-    private float actualRunValue = 1;
+    private float actualRunValue = 0;
 
     [Header("Camera Parameter")]
     [SerializeField] Transform mainCamera;
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
 
-        //y축 회전 막기
+        //임의의 y축 회전 막기
         var angularVelocity = rb.angularVelocity;
         angularVelocity.y = 0f;
         rb.angularVelocity = angularVelocity;
@@ -104,6 +105,15 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
         }
+        
+        //사다리 오르기
+        //근데 사다리를 굳이 forcemode를 사용해서 구현해야하는 이유는 잘 모르겠습니다.
+        else if (context.phase == InputActionPhase.Performed && IsLadder())
+        {
+            rb.AddForce(Vector2.up * jumpPower* 0.5f, ForceMode.VelocityChange);
+            if (rb.velocity.magnitude > 3.0f)
+                rb.velocity = rb.velocity.normalized * 3.0f;
+        }
     }
 
     public void PerspectiveInputRecieve(InputAction.CallbackContext context)
@@ -122,7 +132,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            actualRunValue = 1;
+            actualRunValue = 0;
         }
     }
 
@@ -131,6 +141,14 @@ public class PlayerController : MonoBehaviour
         Ray ray = new Ray(transform.position, Vector3.down);
 
         if (Physics.Raycast(ray, 0.6f, groundLayerMask))
+            return true;
+        return false;
+    }
+
+    bool IsLadder()
+    {
+        Ray ray = new Ray(transform.position, foward);
+        if (Physics.Raycast(ray, 0.8f, ladderLayerMask))
             return true;
         return false;
     }
@@ -144,10 +162,12 @@ public class PlayerController : MonoBehaviour
     {
         if (!isFirstPerson)
         {
+            //3인칭 -> 1인칭 때 첫 시점 동기화
             Vector3 camEuler = mainCamera.rotation.eulerAngles;
             transform.eulerAngles = new Vector3(0f, camEuler.y, 0f);
 
-            mainCamera.localPosition = new Vector3(0f, firstCameraHeight, 0f); // 로컬 0,0,0 대신 머리 위치로
+            //카메라 위치 원상복구
+            mainCamera.localPosition = new Vector3(0f, firstCameraHeight, 0f); 
             mainCamera.localEulerAngles = new Vector3(-currentCameraRotationX, 0, 0);
             Debug.Log(transform.position);
         }
