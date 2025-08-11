@@ -9,5 +9,5 @@ public class ItemData : ScriptableObject
     public string itemName;
     public string description;
     public float duration;
-    public ItemEffect effect;
+    public ItemEffectBase effect;
 }

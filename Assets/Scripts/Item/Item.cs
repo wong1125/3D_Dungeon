@@ -9,7 +9,6 @@ public interface IInvestigatable
 }
 
 
-
 public class Item : MonoBehaviour, IInvestigatable
 {
 
@@ -25,8 +24,13 @@ public class Item : MonoBehaviour, IInvestigatable
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            
-            Destroy(this.gameObject);
+            if (data.effect != null)
+            {
+                data.effect.DoItemEffect();
+                Destroy(this.gameObject);
+            }
+            else
+                Debug.Log("아이템 효과가 없습니다!");
         }
     }
 }

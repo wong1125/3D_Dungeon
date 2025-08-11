@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\uC18D\uB3C4 \uAC15\uD654"
   description: "\uC18D\uB3C4\uB97C \uBE60\uB974\uAC8C \uD574\uC8FC\uB294 \uC544\uC774\uD15C\uC785\uB2C8\uB2E4. "
-  effect: {fileID: 0}
+  duration: 0
+  effect: {fileID: 11400000, guid: 3b84e52c5cd8ca14c87add5466b541c9, type: 2}
