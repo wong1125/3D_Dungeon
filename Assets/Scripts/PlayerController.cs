@@ -33,6 +33,11 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+
+        //y축 회전 막기
+        var angularVelocity = rb.angularVelocity;
+        angularVelocity.y = 0f;
+        rb.angularVelocity = angularVelocity;
     }
 
     private void LateUpdate()
@@ -60,6 +65,7 @@ public class PlayerController : MonoBehaviour
 
     void CameraLook()
     {
+
         currentCameraRotationX += inputDelta.y * mouseSensitivity;
         currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -mouseAltitudeLimit, mouseAltitudeLimit);
         firstPersonCamera.localEulerAngles = new Vector3(-currentCameraRotationX, 0, 0);
@@ -100,4 +106,8 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    public void ChangeSpeed(float speed)
+    {
+        moveSpeed += speed;
+    }
 }
