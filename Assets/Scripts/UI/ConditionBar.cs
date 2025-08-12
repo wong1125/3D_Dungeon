@@ -5,37 +5,37 @@ using UnityEngine.UI;
 
 public class ConditionBar : MonoBehaviour
 {
-    public float initialCondition;
-    public float maxContidion;
-    private float currnetCondtion;
+    private float initialCondition = 100;
+    private float maxContidion = 100;
+    private float currentCondtion = 100;
 
-    
     [SerializeField] Image uiBar;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        currnetCondtion = initialCondition;
-    }
-
     // Update is called once per frame
     void Update()
     {
-        uiBar.fillAmount = GetImageRation();
+        uiBar.fillAmount = GetImageRatio();
     }
 
 
-    float GetImageRation()
+    float GetImageRatio()
     {
-        return currnetCondtion / maxContidion;
+        return currentCondtion / maxContidion;
     }
 
-    void ChangeCondition(float value)
+    public void ChangeCondition(float value)
     {
-        currnetCondtion += value;
-        if (currnetCondtion >= maxContidion)
-            currnetCondtion = maxContidion;
-        else if (currnetCondtion <= 0)
-            currnetCondtion = 0;
+        currentCondtion += value;
+        if (currentCondtion >= maxContidion)
+            currentCondtion = maxContidion;
+        else if (currentCondtion <= 0)
+            currentCondtion = 0;
+    }
+
+    public void SyncCondtion(float init, float max)
+    {
+        initialCondition = init;
+        maxContidion = max;
+        currentCondtion = initialCondition;
     }
 }

@@ -40,6 +40,8 @@ public class PlayerInvestigation : MonoBehaviour
             {
                 informationText.gameObject.SetActive(false);
             }
+
+
         }
 
     }
@@ -67,4 +69,5 @@ public class PlayerInvestigation : MonoBehaviour
     {
         informationText.text = currnetInvestigatable.GetDataString();
     }
+
 }

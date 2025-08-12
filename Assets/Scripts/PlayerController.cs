@@ -12,7 +12,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private LayerMask ladderLayerMask;
     private Vector2 inputMovement;
-    private float actualRunValue = 0;
+    private bool isMoving = false;
+    public bool IsMoving { get { return isMoving; } }
+    private int runSwitch = 0;
+    public int RunSwitch { get { return runSwitch; } }
 
     [Header("Camera Parameter")]
     [SerializeField] Transform mainCamera;
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private bool isFirstPerson = true;
 
     private Rigidbody rb;
+    private PlayerCondition playerCondition;
 
     private void Awake()
     {
@@ -34,8 +38,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        playerCondition = CharacterManager.Instance.Player.condition;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
 
     private void FixedUpdate()
     {
@@ -64,7 +70,7 @@ public class PlayerController : MonoBehaviour
         right.Normalize();
 
         Vector3 actaulMovementVector = foward * inputMovement.y + right * inputMovement.x;
-        actaulMovementVector *= moveSpeed + actualRunValue;
+        actaulMovementVector *= moveSpeed + runSwitch * runSpeed;
 
         actaulMovementVector.y = rb.velocity.y;
         rb.velocity = actaulMovementVector;
@@ -87,13 +93,15 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             inputMovement = context.ReadValue<Vector2>();
+            isMoving = true;
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             inputMovement = Vector2.zero;
+            isMoving = false;
         }
     }
-    
+
     public void LookInputRecieve(InputAction.CallbackContext context)
     {
         inputDelta = context.ReadValue<Vector2>();
@@ -101,16 +109,16 @@ public class PlayerController : MonoBehaviour
 
     public void JumpInputRecieve(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Started && IsGround())
+        if (context.phase == InputActionPhase.Started && IsGround())
         {
             rb.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
         }
-        
+
         //사다리 오르기
         //근데 사다리를 굳이 forcemode를 사용해서 구현해야하는 이유는 잘 모르겠습니다.
         else if (context.phase == InputActionPhase.Performed && IsLadder())
         {
-            rb.AddForce(Vector2.up * jumpPower* 0.5f, ForceMode.VelocityChange);
+            rb.AddForce(Vector2.up * jumpPower * 0.5f, ForceMode.VelocityChange);
             if (rb.velocity.magnitude > 3.0f)
                 rb.velocity = rb.velocity.normalized * 3.0f;
         }
@@ -126,13 +134,13 @@ public class PlayerController : MonoBehaviour
 
     public void RunInputRecieve(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed && IsGround())
+        if (context.phase == InputActionPhase.Performed && IsGround() && playerCondition.CurrentStamina > 0)
         {
-            actualRunValue = runSpeed;
+            runSwitch = 1;
         }
         else
         {
-            actualRunValue = 0;
+            runSwitch = 0;
         }
     }
 
@@ -156,6 +164,16 @@ public class PlayerController : MonoBehaviour
     public void ChangeSpeed(float speed)
     {
         moveSpeed += speed;
+    }
+
+    public void ChangeJumpPower(float jump)
+    {
+        jumpPower += jump;
+    }
+
+    public void BanRunning()
+    {
+        runSwitch = 0;
     }
 
     void ChangePerspective()

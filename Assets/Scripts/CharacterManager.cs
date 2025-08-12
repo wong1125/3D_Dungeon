@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class CharacterManager : SingletonWithMono<CharacterManager>
 {
-    public Player Player { get; private set; }
-
-    public void PlayerSet(Player player)
-    {
-        Player = player;
-    }
+    public Player Player;
 
 }
