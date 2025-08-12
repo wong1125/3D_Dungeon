@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    private bool controllerOn = true;
+    
     [Header("Movement Parameter")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float runSpeed;
@@ -45,7 +47,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
+        if (controllerOn)
+            Move();
 
         //임의의 y축 회전 막기
         var angularVelocity = rb.angularVelocity;
@@ -174,6 +177,11 @@ public class PlayerController : MonoBehaviour
     public void BanRunning()
     {
         runSwitch = 0;
+    }
+
+    public void ControllerSwitch()
+    {
+        controllerOn = !controllerOn;
     }
 
     void ChangePerspective()
