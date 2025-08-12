@@ -39,10 +39,7 @@ public class Cannon : MonoBehaviour, IInvestigatable
         return str;
     }
 
-    public bool CanInteract()
-    {
-        return true;
-    }
+    public bool CanInteract { get; set; } = true;
 
     public void InteractReaction()
     {

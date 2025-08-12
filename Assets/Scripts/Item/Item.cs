@@ -6,7 +6,7 @@ public interface IInvestigatable
 {
     string GetDataString();
 
-    bool CanInteract();
+    bool CanInteract { get; set; }
 
     void InteractReaction();
  
@@ -27,15 +27,12 @@ public class Item : MonoBehaviour, IInvestigatable
 
     [SerializeField] ItemData data;
 
+    public bool CanInteract { get; set; } = false;
+
     public string GetDataString()
     {
         string str = $"[{data.itemName}]\n{data.description}";
         return str;
-    }
-
-    public bool CanInteract()
-    {
-        return false;
     }
 
     public void InteractReaction()
@@ -63,6 +60,7 @@ public class Item : MonoBehaviour, IInvestigatable
         mr.enabled = false;
         yield return new WaitForSeconds(data.duration);
         data.effect.DoItemEffect(false);
-        Destroy(this.gameObject);
+        col.enabled = true;
+        mr.enabled = true;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName = "ItemEffects/JumpUp")]
-public class JumpUpEffect : ItemEffectBase
+public class JumpUpEffect : EffectBase
 {
     public float jumpBoost;
 

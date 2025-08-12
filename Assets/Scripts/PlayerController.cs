@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public bool IsMoving { get { return isMoving; } }
     private int runSwitch = 0;
     public int RunSwitch { get { return runSwitch; } }
+    private int jumpSwitchDefault = 1;
+    private int jumpSwitch = 1;
 
     [Header("Camera Parameter")]
     [SerializeField] Transform mainCamera;
@@ -112,8 +114,10 @@ public class PlayerController : MonoBehaviour
 
     public void JumpInputRecieve(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && IsGround())
+        if (context.phase == InputActionPhase.Started && (jumpSwitch > 0 || IsGround()))
         {
+            jumpSwitch--;
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
         }
 
@@ -152,7 +156,10 @@ public class PlayerController : MonoBehaviour
         Ray ray = new Ray(transform.position, Vector3.down);
 
         if (Physics.Raycast(ray, 0.6f, groundLayerMask))
+        {
+            jumpSwitch = jumpSwitchDefault;
             return true;
+        }
         return false;
     }
 
@@ -164,25 +171,6 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    public void ChangeSpeed(float speed)
-    {
-        moveSpeed += speed;
-    }
-
-    public void ChangeJumpPower(float jump)
-    {
-        jumpPower += jump;
-    }
-
-    public void BanRunning()
-    {
-        runSwitch = 0;
-    }
-
-    public void ControllerSwitch()
-    {
-        controllerOn = !controllerOn;
-    }
 
     void ChangePerspective()
     {
@@ -195,7 +183,6 @@ public class PlayerController : MonoBehaviour
             //카메라 위치 원상복구
             mainCamera.localPosition = new Vector3(0f, firstCameraHeight, 0f); 
             mainCamera.localEulerAngles = new Vector3(-currentCameraRotationX, 0, 0);
-            Debug.Log(transform.position);
         }
         else
         {
@@ -236,5 +223,29 @@ public class PlayerController : MonoBehaviour
         // 위치 & 항상 타겟을 바라보게
         mainCamera.position = desiredPos;
         mainCamera.rotation = Quaternion.LookRotation(pivot - desiredPos, Vector3.up);
+    }
+    public void ChangeSpeed(float speed)
+    {
+        moveSpeed += speed;
+    }
+
+    public void ChangeJumpPower(float jump)
+    {
+        jumpPower += jump;
+    }
+
+    public void BanRunning()
+    {
+        runSwitch = 0;
+    }
+
+    public void ControllerSwitch()
+    {
+        controllerOn = !controllerOn;
+    }
+
+    public void MultipleJump(int jump)
+    {
+        jumpSwitchDefault = jump;
     }
 }

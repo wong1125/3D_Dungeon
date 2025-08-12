@@ -35,10 +35,10 @@ public class PlayerInvestigation : MonoBehaviour
             lastCheckedTime = Time.time;
             bool showInformation = RayInvestigation();
 
-            if (showInformation)
+            if (showInformation && currnetInvestigatable != null)
             {
                 informationText.gameObject.SetActive(true);
-                if (!currnetInvestigatable.CanInteract())
+                if (!currnetInvestigatable.CanInteract)
                 {
                     interactionText.gameObject.SetActive(false);
                 }
@@ -72,17 +72,25 @@ public class PlayerInvestigation : MonoBehaviour
             return true;
         }
         else
+        {
+            currentTarget = null;
+            currnetInvestigatable = null;
             return false;
+        }
+            
     }
 
     void SetInformationText()
     {
-        informationText.text = currnetInvestigatable.GetDataString();
+        if (currnetInvestigatable != null)
+            informationText.text = currnetInvestigatable.GetDataString();
+        else
+            Debug.LogWarning("조사대상을 불러올 수 없습니다.");
     }
 
     public void InteractionInputReceive(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && currnetInvestigatable != null && currnetInvestigatable.CanInteract())
+        if (context.phase == InputActionPhase.Started && currnetInvestigatable != null && currnetInvestigatable.CanInteract)
             Interact();
     }
 

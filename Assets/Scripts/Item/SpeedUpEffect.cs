@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ItemEffectBase : ScriptableObject
+public abstract class EffectBase : ScriptableObject
 {
     public abstract void DoItemEffect(bool itemOn);
 }
 
 [CreateAssetMenu(menuName = "ItemEffects/SpeedUp")]
-public class SpeedUpEffect : ItemEffectBase
+public class SpeedUpEffect : EffectBase
 {
     public float speedBoost;
     
