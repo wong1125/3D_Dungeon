@@ -5,6 +5,10 @@ using UnityEngine;
 public interface IInvestigatable
 {
     string GetDataString();
+
+    bool CanInteract();
+
+    void InteractReaction();
  
 }
 
@@ -27,6 +31,16 @@ public class Item : MonoBehaviour, IInvestigatable
     {
         string str = $"[{data.itemName}]\n{data.description}";
         return str;
+    }
+
+    public bool CanInteract()
+    {
+        return false;
+    }
+
+    public void InteractReaction()
+    {
+        return;
     }
 
     private void OnCollisionEnter(Collision collision)

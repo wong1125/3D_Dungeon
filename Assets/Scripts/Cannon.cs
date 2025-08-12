@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cannon : MonoBehaviour
+public class Cannon : MonoBehaviour, IInvestigatable
 {
     [SerializeField] float launchPower = 10f;
     private Rigidbody playerRb;
@@ -11,33 +11,20 @@ public class Cannon : MonoBehaviour
     private void Start()
     {
         playerController = CharacterManager.Instance.Player.controller;
-        //테스트용
         playerRb = CharacterManager.Instance.Player.GetComponent<Rigidbody>();
     }
 
-    private void Update()
-    {
 
+    IEnumerator LaunchPlayer()
+    {
+        playerRb.MovePosition(transform.position + Vector3.up * 0.25f);
+        yield return new WaitForSeconds(3f);
+        Quaternion q = Quaternion.Euler(new Vector3(20, playerRb.rotation.eulerAngles.y, 0));
+        Vector3 directionVector = q * Vector3.forward;
+        StartCoroutine(TurnOffControllBriefly());
+        playerRb.AddForce(directionVector * launchPower * 10f, ForceMode.Impulse);
     }
 
-    void LaunchPlayer()
-    {
-        if (playerRb != null)
-        {
-            Quaternion q = Quaternion.Euler(new Vector3(30, playerRb.rotation.eulerAngles.y, 0));
-            Vector3 directionVector = q * Vector3.forward;
-            StartCoroutine(TurnOffControllBriefly());
-            playerRb.AddForce(directionVector * launchPower * 10f, ForceMode.Impulse);
-        }
-        else
-            Debug.Log("Player를 찾을 수 없습니다.");
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        playerRb = collision.gameObject.GetComponent<Rigidbody>();
-        LaunchPlayer();
-    }
 
     IEnumerator TurnOffControllBriefly()
     {
@@ -46,4 +33,25 @@ public class Cannon : MonoBehaviour
         playerController.ControllerSwitch();
     }
 
+    public string GetDataString()
+    {
+        string str = "[대포]\n원하는 방향으로 발사할 수 있습니다.";
+        return str;
+    }
+
+    public bool CanInteract()
+    {
+        return true;
+    }
+
+    public void InteractReaction()
+    {
+        if (playerRb != null)
+        {
+            StartCoroutine(LaunchPlayer());
+        }
+        else
+            Debug.Log("Player를 찾을 수 없습니다.");
+
+    }
 }

@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
 
     public void PerspectiveInputRecieve(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && IsGround())
+        if (context.phase == InputActionPhase.Started)
         {
             ChangePerspective();
         }
