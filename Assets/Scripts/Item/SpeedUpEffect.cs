@@ -10,11 +10,11 @@ public abstract class ItemEffectBase : ScriptableObject
 [CreateAssetMenu(menuName = "ItemEffects/SpeedUp")]
 public class SpeedUpEffect : ItemEffectBase
 {
-    public float deltaSpeed;
+    public float speedBoost;
     
     public override void DoItemEffect(bool ItemOn)
     {
-        float speed = ItemOn ? deltaSpeed : -deltaSpeed;
+        float speed = ItemOn ? speedBoost : -speedBoost;
         CharacterManager.Instance.Player.controller.ChangeSpeed(speed);
     }
 
