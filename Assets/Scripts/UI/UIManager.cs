@@ -8,4 +8,5 @@ public class UIManager : SingletonWithMono<UIManager>
     public UICondition UICondition;
     public TextMeshProUGUI InformationText;
     public TextMeshProUGUI InteractionText;
+    public TextMeshProUGUI clearText;
 }

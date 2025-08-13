@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public PlayerController controller;
     public PlayerCondition condition;
+    public PlayerInvestigation investigation;
     public PlayerEquip equip;
     
     private void Awake()
@@ -13,6 +14,7 @@ public class Player : MonoBehaviour
         CharacterManager.Instance.Player = this;
         controller = GetComponent<PlayerController>();
         condition = GetComponent<PlayerCondition>();
+        investigation = GetComponent<PlayerInvestigation>();
         equip = GetComponent<PlayerEquip>();
     }
 }

@@ -35,7 +35,7 @@ public class Cannon : MonoBehaviour, IInvestigatable
 
     public string GetDataString()
     {
-        string str = "[대포]\n원하는 방향으로 발사할 수 있습니다.";
+        string str = "[대포]\n상호작용시 마우스 방향으로 3초후 발사됩니다.";
         return str;
     }
 

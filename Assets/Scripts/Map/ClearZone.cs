@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestDamage : MonoBehaviour
+public class ClearZone : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            CharacterManager.Instance.Player.condition.HealthChanger(-10);
+            UIManager.Instance.clearText.gameObject.SetActive(true);
         }
     }
 }

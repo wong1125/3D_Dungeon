@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         playerCondition = CharacterManager.Instance.Player.condition;
         Cursor.lockState = CursorLockMode.Locked;
+        rb.MovePosition(Vector3.zero);
     }
 
 
@@ -183,10 +184,12 @@ public class PlayerController : MonoBehaviour
             //카메라 위치 원상복구
             mainCamera.localPosition = new Vector3(0f, firstCameraHeight, 0f); 
             mainCamera.localEulerAngles = new Vector3(-currentCameraRotationX, 0, 0);
+            CharacterManager.Instance.Player.investigation.RayDistanceChange(4);
         }
         else
         {
             PolarAngleCaulator(currentCameraRotationX);
+            CharacterManager.Instance.Player.investigation.RayDistanceChange(12);
         }
         isFirstPerson = !isFirstPerson;
     }

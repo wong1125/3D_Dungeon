@@ -64,7 +64,8 @@ public class PlayerCondition : MonoBehaviour
         else if (currentHealth <= 0)
         {
             currentHealth = 0;
-            Die();
+            StartCoroutine(Die());
+
         }
     }
 
@@ -80,9 +81,10 @@ public class PlayerCondition : MonoBehaviour
         }
     }
 
-    void Die()
+    IEnumerator Die()
     {
         transform.position = Vector3.zero;
-        currentHealth = initialHealth;
+        yield return null;
+        HealthChanger(initialHealth);
     }
 }

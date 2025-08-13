@@ -99,4 +99,9 @@ public class PlayerInvestigation : MonoBehaviour
         currnetInvestigatable.InteractReaction();
     }
 
+    public void RayDistanceChange(float distance)
+    {
+        maxCheckDistance = distance;
+    }
+
 }

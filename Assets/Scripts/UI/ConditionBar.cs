@@ -20,6 +20,7 @@ public class ConditionBar : MonoBehaviour
 
     float GetImageRatio()
     {
+
         return currentCondtion / maxContidion;
     }
 
