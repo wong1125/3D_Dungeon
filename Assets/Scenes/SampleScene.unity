@@ -1693,7 +1693,7 @@ GameObject:
   - component: {fileID: 473309251}
   - component: {fileID: 473309250}
   - component: {fileID: 473309253}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: SpawnLocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
