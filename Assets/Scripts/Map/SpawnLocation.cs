@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapProjectile : MonoBehaviour, IInvestigatable
+public class SpawnLocation : MonoBehaviour, IInvestigatable
 {
-    Trap trap;
-
     [SerializeField] string objName;
     [SerializeField] string destription;
-
-    private void Awake()
-    {
-        trap = GetComponentInParent<Trap>();
-    }
 
     public bool CanInteract { get; set; } = false;
 
@@ -26,10 +19,4 @@ public class TrapProjectile : MonoBehaviour, IInvestigatable
     {
         return;
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        trap.ChildOnCollisionEnter(collision);
-    }
-
 }

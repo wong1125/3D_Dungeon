@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IInvestigatable
 {
 
     [SerializeField] float playerFollowDistance;
@@ -14,6 +14,9 @@ public class Enemy : MonoBehaviour
     private Vector3 startPosition;
     private float lastCheckedTime;
     private float resetLimt = 30f;
+
+    [SerializeField] string objName;
+    [SerializeField] string destription;
 
     private void Awake()
     {
@@ -55,5 +58,18 @@ public class Enemy : MonoBehaviour
         {
             agent.SetDestination(CharacterManager.Instance.Player.transform.position);
         }
+    }
+
+    public bool CanInteract { get; set; } = false;
+
+    public string GetDataString()
+    {
+        string str = $"[{objName}]\n{destription}";
+        return str;
+    }
+
+    public void InteractReaction()
+    {
+        return;
     }
 }
