@@ -19,7 +19,8 @@ public class PlayerCondition : MonoBehaviour
     public float CurrentStamina { get { return currentStamina; } }
     private float previousChangedTime;
     private float staminaChageRate = 0.05f;
-    
+
+    //플레이어, UI를 한번에 바꿔주는 델리게이트
     public Action<float> HealthChanger;
     public Action<float> StaminaChanger;
 
@@ -43,6 +44,7 @@ public class PlayerCondition : MonoBehaviour
 
     private void Update()
     {
+        //달릴 때 스테미나 감소, 정지하면 회복
         if (playerController.RunSwitch == 1 && Time.time - previousChangedTime > staminaChageRate)
         {
             StaminaChanger(-1);
@@ -84,6 +86,7 @@ public class PlayerCondition : MonoBehaviour
     IEnumerator Die()
     {
         transform.position = Vector3.zero;
+        // 1프레임 여유 없으면, 체력 회복된 직후에 데미지를 입히는 콜라이더에 닿아서 체력 잃음
         yield return null;
         HealthChanger(initialHealth);
     }

@@ -19,7 +19,6 @@ public class PlayerInvestigation : MonoBehaviour
     private GameObject currentTarget;
     private IInvestigatable currnetInvestigatable;
 
-    // Start is called before the first frame update
     void Start()
     {
         informationText = UIManager.Instance.InformationText;
@@ -27,7 +26,6 @@ public class PlayerInvestigation : MonoBehaviour
         mainCamera = Camera.main;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Time.time - lastCheckedTime > checkRate)
@@ -99,9 +97,9 @@ public class PlayerInvestigation : MonoBehaviour
         currnetInvestigatable.InteractReaction();
     }
 
-    public void RayDistanceChange(float distance)
+    public void ThirdPespectiveray(bool isThird)
     {
-        maxCheckDistance = distance;
+        maxCheckDistance = isThird ? 10 : 4;
     }
 
 }

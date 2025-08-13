@@ -5,13 +5,12 @@ using UnityEngine.UI;
 
 public class ConditionBar : MonoBehaviour
 {
-    private float initialCondition = 100;
-    private float maxContidion = 100;
-    private float currentCondtion = 100;
+    private float initialCondition ;
+    private float maxContidion;
+    private float currentCondtion;
 
     [SerializeField] Image uiBar;
     
-    // Update is called once per frame
     void Update()
     {
         uiBar.fillAmount = GetImageRatio();
@@ -20,7 +19,6 @@ public class ConditionBar : MonoBehaviour
 
     float GetImageRatio()
     {
-
         return currentCondtion / maxContidion;
     }
 
@@ -33,6 +31,7 @@ public class ConditionBar : MonoBehaviour
             currentCondtion = 0;
     }
 
+    //외부(플레이어) 정보 받아오기
     public void SyncCondtion(float init, float max)
     {
         initialCondition = init;

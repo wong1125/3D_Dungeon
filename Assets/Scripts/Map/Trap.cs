@@ -55,6 +55,7 @@ public class Trap : MonoBehaviour
         active = true;
     }
 
+    //플레이어 컨트롤을 잠시 비활성화하지 않으면, 힘을 받아도 바로 초기화됨.
     IEnumerator TurnOffControllBriefly()
     {
         CharacterManager.Instance.Player.controller.ControllerSwitch();
@@ -62,6 +63,7 @@ public class Trap : MonoBehaviour
         CharacterManager.Instance.Player.controller.ControllerSwitch();
     }
 
+    //콜라이더가 자식 오브젝트에게 있어서, 자식의 OnCollsionEnter에서 호출됨.
     public void ChildOnCollisionEnter(Collision collision)
     {
 
@@ -72,8 +74,5 @@ public class Trap : MonoBehaviour
 
         }
     }
-
-
-
 
 }

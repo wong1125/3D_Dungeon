@@ -152,6 +152,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //땅 판정
     bool IsGround()
     {
         Ray ray = new Ray(transform.position, Vector3.down);
@@ -164,6 +165,7 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    //사다리 판정
     bool IsLadder()
     {
         Ray ray = new Ray(transform.position, foward);
@@ -172,7 +174,7 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-
+    //Q로 1인칭, 3인칭 변경
     void ChangePerspective()
     {
         if (!isFirstPerson)
@@ -184,12 +186,15 @@ public class PlayerController : MonoBehaviour
             //카메라 위치 원상복구
             mainCamera.localPosition = new Vector3(0f, firstCameraHeight, 0f); 
             mainCamera.localEulerAngles = new Vector3(-currentCameraRotationX, 0, 0);
-            CharacterManager.Instance.Player.investigation.RayDistanceChange(4);
+
+            CharacterManager.Instance.Player.investigation.ThirdPespectiveray(false);
         }
         else
         {
             PolarAngleCaulator(currentCameraRotationX);
-            CharacterManager.Instance.Player.investigation.RayDistanceChange(12);
+            
+            //상호작용 Ray 길이 변경
+            CharacterManager.Instance.Player.investigation.ThirdPespectiveray(true);
         }
         isFirstPerson = !isFirstPerson;
     }
@@ -227,6 +232,8 @@ public class PlayerController : MonoBehaviour
         mainCamera.position = desiredPos;
         mainCamera.rotation = Quaternion.LookRotation(pivot - desiredPos, Vector3.up);
     }
+    
+    //이하 외부에서 변수 변경하는 함수들
     public void ChangeSpeed(float speed)
     {
         moveSpeed += speed;

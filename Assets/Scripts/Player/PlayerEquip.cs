@@ -11,6 +11,7 @@ public class PlayerEquip : MonoBehaviour
     public EquipmentData currentEquipmentData;
     public GameObject ring;
 
+    //Tab키로 착용 장비 버리기
     public void UnEquip()
     {
         ring.SetActive(false);

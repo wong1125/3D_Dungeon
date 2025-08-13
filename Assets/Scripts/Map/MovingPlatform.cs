@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
+    //인스펙터에서 이동방향 설정 가능
     [SerializeField] Vector3 direction = Vector3.forward;
     [SerializeField] float moveDistance = 5f;
     [SerializeField] float duration = 5f;
@@ -46,7 +47,7 @@ public class MovingPlatform : MonoBehaviour
     }
 
 
-    //lerp로 MovePosition을 이용한 움직임 구현
+    //시간 기반 lerp로 MovePosition을 이용한 움직임 구현
     IEnumerator LerpMove(Vector3 targetPos, float duration)
     {
         Vector3 startPos = transform.position;
@@ -61,6 +62,7 @@ public class MovingPlatform : MonoBehaviour
         rb.MovePosition(targetPos);
     }
 
+    //접촉시 플랫폼과 같이 움직이기
     private void OnCollisionStay(Collision collision)
     {
         collision.rigidbody.MovePosition(collision.rigidbody.position + velocity * Time.fixedDeltaTime);

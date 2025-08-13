@@ -3414,6 +3414,7 @@ GameObject:
   - component: {fileID: 705755092}
   - component: {fileID: 705755091}
   - component: {fileID: 705755090}
+  - component: {fileID: 705755093}
   m_Layer: 7
   m_Name: Ladder (2)
   m_TagString: Untagged
@@ -3507,6 +3508,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705755088}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &705755093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705755088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 662aef0d4c05f8d42bb3a5c5e37fd0c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &707782571
 GameObject:
   m_ObjectHideFlags: 0
@@ -3906,7 +3919,7 @@ Transform:
   m_GameObject: {fileID: 717473711}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.44, y: 20.28, z: 65.93}
+  m_LocalPosition: {x: -0.88, y: 19.71, z: 49.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3957,7 +3970,7 @@ MonoBehaviour:
   interactionText: {fileID: 0}
   investigationLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
 --- !u!114 &717473720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6460,6 +6473,7 @@ GameObject:
   - component: {fileID: 1274905782}
   - component: {fileID: 1274905781}
   - component: {fileID: 1274905780}
+  - component: {fileID: 1274905784}
   m_Layer: 7
   m_Name: Ladder
   m_TagString: Untagged
@@ -6553,6 +6567,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1335048319}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1274905784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274905779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 662aef0d4c05f8d42bb3a5c5e37fd0c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1275165231
 GameObject:
   m_ObjectHideFlags: 0
@@ -8997,6 +9023,7 @@ GameObject:
   - component: {fileID: 1768136368}
   - component: {fileID: 1768136367}
   - component: {fileID: 1768136366}
+  - component: {fileID: 1768136369}
   m_Layer: 7
   m_Name: Ladder (1)
   m_TagString: Untagged
@@ -9090,6 +9117,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768136364}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1768136369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768136364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 662aef0d4c05f8d42bb3a5c5e37fd0c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1777058279
 GameObject:
   m_ObjectHideFlags: 0

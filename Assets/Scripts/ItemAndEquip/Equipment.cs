@@ -30,6 +30,8 @@ public class Equipment : MonoBehaviour, IInvestigatable
 
         data.effect.DoItemEffect(true);
         playerEquip.currentEquipmentData = this.data;
+
+        //장비 장착시 플레이어 장식 활성화 및 색 변경
         playerEquip.ring.SetActive(true);
         var renderers = playerEquip.ring.GetComponentsInChildren<MeshRenderer>();
         for (int i = 0; i < renderers.Length; i++)
@@ -37,6 +39,7 @@ public class Equipment : MonoBehaviour, IInvestigatable
             Material material = renderers[i].material;
             material.color = data.color;
         }
+
         Destroy(this.gameObject);
     }
 }

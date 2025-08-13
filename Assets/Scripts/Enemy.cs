@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
             FollowPlayer();
             lastCheckedTime = Time.time;
         }
+        //일정 시간 플레이어가 탐색 범위 밖에 있으면 위치 초기화
         else if (Time.time - lastCheckedTime > resetLimt)
             transform.position = startPosition;
     }
