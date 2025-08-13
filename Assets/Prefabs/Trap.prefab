@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 862839394916695957}
   - component: {fileID: 5855418215074781987}
   - component: {fileID: 2343370815706678405}
+  - component: {fileID: 933868786198421449}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -114,7 +115,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 647511442917235873}
   serializedVersion: 4
-  m_Mass: 100
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -133,6 +134,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &933868786198421449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647511442917235873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5823acd28bdac943913fabd7933c148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &738651605653645439
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ab6680a7809b74daaea7c302514a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 50
+  power: 100
   lazerLength: 2.5
   playerMask:
     serializedVersion: 2

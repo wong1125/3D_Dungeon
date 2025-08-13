@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerCondition : MonoBehaviour
 {
-    private float initialHealth = 50;
+    private float initialHealth = 100;
     public float InitialHealth { get { return initialHealth; } }
     private float maxHealth = 100;
     public float MaxHealth {  get { return maxHealth; } }
@@ -82,6 +82,7 @@ public class PlayerCondition : MonoBehaviour
 
     void Die()
     {
-        Debug.LogError("»ç¸ÁÇÏ¼Ì½À´Ï´Ù!");
+        transform.position = Vector3.zero;
+        currentHealth = initialHealth;
     }
 }
