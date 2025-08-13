@@ -28,16 +28,16 @@
 ### 도전 기능
 
 <p align="center">
-<img width="962" height="541" alt="image" src="https://github.com/user-attachments/assets/33b5fec1-7855-44a4-b66e-e913eebd6881" />
-<img width="962" height="541" alt="image" src="https://github.com/user-attachments/assets/8626f1d8-84e3-4014-9323-c883e3e9a3ef" />
+<img width="480" height="270" alt="image" src="https://github.com/user-attachments/assets/33b5fec1-7855-44a4-b66e-e913eebd6881" />
+<img width="480" height="270" alt="image" src="https://github.com/user-attachments/assets/8626f1d8-84e3-4014-9323-c883e3e9a3ef" />
 </p>
 <p align="center"> 
-<img width="962" height="541" alt="image" src="https://github.com/user-attachments/assets/a23cfabb-615e-466b-b3ae-4e8c303af11c" />
-<img width="962" height="541" alt="image" src="https://github.com/user-attachments/assets/6ae7e0d1-afb5-4a17-ad9b-39d777587d29" />
+<img width="480" height="270" alt="image" src="https://github.com/user-attachments/assets/a23cfabb-615e-466b-b3ae-4e8c303af11c" />
+<img width="480" height="270" alt="image" src="https://github.com/user-attachments/assets/6ae7e0d1-afb5-4a17-ad9b-39d777587d29" />
 </p>
 <p align="center">
-<img width="962" height="514" alt="image" src="https://github.com/user-attachments/assets/ade9f34a-1140-4300-8b29-019a2d1d01fc" />
-<img width="962" height="514" alt="image" src="https://github.com/user-attachments/assets/9368cb05-9b38-451b-bd78-4061d0a82aa7" />
+<img width="480" height="270" alt="image" src="https://github.com/user-attachments/assets/ade9f34a-1140-4300-8b29-019a2d1d01fc" />
+<img width="480" height="270" alt="image" src="https://github.com/user-attachments/assets/9368cb05-9b38-451b-bd78-4061d0a82aa7" />
 </p>
 
 - 우측 하단에 스테미나가 표시됩니다. shift를 누르면 스테미나가 소비되면서 이동속도가 빨라집니다. 정지하면 스테미나가 회복됩니다.
