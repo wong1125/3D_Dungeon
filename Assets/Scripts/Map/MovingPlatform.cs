@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
+    [SerializeField] Vector3 direction = Vector3.forward;
     [SerializeField] float moveDistance = 5f;
     [SerializeField] float duration = 5f;
     
@@ -37,9 +38,9 @@ public class MovingPlatform : MonoBehaviour
     {
         while (true)
         {
-            StartCoroutine(LerpMove(transform.position + Vector3.forward * moveDistance, 5f));
+            StartCoroutine(LerpMove(transform.position + direction * moveDistance, 5f));
             yield return waitDurationSeconds;
-            StartCoroutine(LerpMove(transform.position + Vector3.back * moveDistance, 5f));
+            StartCoroutine(LerpMove(transform.position + -direction * moveDistance, 5f));
             yield return waitDurationSeconds;
         }
     }
